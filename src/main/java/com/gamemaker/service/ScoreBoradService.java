@@ -21,18 +21,12 @@ import com.gamemaker.model.ScoreBoardEntry;
 public class ScoreBoradService {
 
 	@Autowired
-	private GameRepository gameRespository_;
-
-	@Autowired
-	private PlayerRepository playerRepository_;
-	
-	@Autowired
 	private GameDetailsDao gameDetailsDao;
 	
 	@Autowired
 	private PlayerDetailsDao playerDetailsDao;
 	
-	public void saveScore(@NonNull int gameId, @NonNull String gameName, @NonNull int Score) {
+	public void saveScore(@NonNull int gameId, @NonNull String name, @NonNull int Score) {
 		GameDetails gameDetails = gameDetailsDao.findById(gameId).get();
 		if (gameDetails == null) {
 			//TO DO: throw error

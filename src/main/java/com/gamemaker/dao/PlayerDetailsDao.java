@@ -74,5 +74,8 @@ public class PlayerDetailsDao implements PlayerRepository{
 		// TODO Auto-generated method stub
 		
 	}
+	public void insert() {
+		
+	}
 
 }
