@@ -7,7 +7,7 @@ import com.gamemaker.dao.GameRepository;
 import com.gamemaker.dao.PlayerRepository;
 
 @Service
-public class ScoreBoradService {
+public class ScoreBoardService {
 
 	@Autowired
 	private GameRepository gameRespository_;
