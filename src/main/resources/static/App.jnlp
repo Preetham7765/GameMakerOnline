@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" codebase="http://localhost:8080/" href="App.jnlp">
+     <information>
+          <title>Java Web Start Example</title>
+          <vendor>Adit Shah</vendor>
+          <homepage href="http://localhost:8080/"/>
+          <description>Hello Java Web Start</description>
+     </information>
+     <security>
+          <all-permissions/>
+     </security>
+     <resources>
+          <j2se version="1.6+"/>
+          <jar href="gamemaker-0.0.1-SNAPSHOT-jar-with-dependencies.jar" main="true"/>
+     </resources>
+     <application-desc main-class="GameMaker" download="eager" />
+</jnlp>
