@@ -11,6 +11,21 @@ public class PlayerDetails {
 	private int id;
 	
 	private int gameId;
+	
+	private String gameName;
+
+	public String getGameName() {
+		return gameName;
+	}
+
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
+
+	private String name;
+
+	private String score;
+	
 
 	public int getId() {
 		return id;
@@ -27,11 +42,7 @@ public class PlayerDetails {
 	public void setGameId(int gameId) {
 		this.gameId = gameId;
 	}
-
-	private String name;
-
-	private String score;
-
+	
 	public String getName() {
 		return name;
 	}

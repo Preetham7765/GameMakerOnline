@@ -1,5 +1,6 @@
 package com.gamemaker.model;
 
+
 public class ScoreBoardEntry {
 
 	private String game;
