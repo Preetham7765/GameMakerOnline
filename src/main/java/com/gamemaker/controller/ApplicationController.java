@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gamemaker.model.ScoreBoardEntry;
-import com.gamemaker.service.ScoreBoradService;
+import com.gamemaker.service.ScoreBoardService;
 
 @RestController
 public class ApplicationController {
 
 	@Autowired
-	private ScoreBoradService scoreBoardService_;
+	private ScoreBoardService scoreBoardService_;
 	
 	@GetMapping("/scoreboard")
 	public String getScoreBoard() {
