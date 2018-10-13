@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jnlp spec="1.0+" codebase="http://localhost:8080/" href="App.jnlp">
+<jnlp spec="1.0+" codebase="http://192.168.43.223:8080/" href="App.jnlp">
      <information>
           <title>Java Web Start Example</title>
-          <vendor>Adit Shah</vendor>
-          <homepage href="http://localhost:8080/"/>
+          <vendor>Murtaza Khambaty</vendor>
+          <homepage href="http://192.168.43.223:8080/"/>
           <description>Hello Java Web Start</description>
      </information>
      <security>
@@ -11,7 +11,7 @@
      </security>
      <resources>
           <j2se version="1.6+"/>
-          <jar href="gamemaker-0.0.1-SNAPSHOT-jar-with-dependencies.jar" main="true"/>
+          <jar href="gamemaker.jar"/>
      </resources>
-     <application-desc main-class="GameMaker" download="eager" />
+     <application-desc main-class="com.gamemaker.App"/>
 </jnlp>
