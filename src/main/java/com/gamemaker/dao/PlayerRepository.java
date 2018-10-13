@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gamemaker.entity.PlayerDetails;
 
+@Repository
 public interface PlayerRepository extends CrudRepository<PlayerDetails, Integer>{
 
 }
