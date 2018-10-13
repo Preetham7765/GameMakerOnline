@@ -1,4 +1,13 @@
 /target/
+<<<<<<< HEAD
+.classpath
+.gitignore
+.project
+.settings/
+/src/main/resources/application.properties
+
+
+=======
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -23,3 +32,4 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+>>>>>>> bf791a6084407909d4cf85f01ba317d7114b5cf0

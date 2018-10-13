@@ -16,7 +16,7 @@ import com.gamemaker.entity.PlayerDetails;
 import com.gamemaker.model.ScoreBoardEntry;
 
 @Service
-public class ScoreBoradService {
+public class ScoreBoardService {
 
 	@Autowired
 	private GameRepository gameRepository;
