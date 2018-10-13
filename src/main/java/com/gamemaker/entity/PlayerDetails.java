@@ -2,25 +2,47 @@ package com.gamemaker.entity;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class PlayerDetails {
 
-	@EmbeddedId
-	private PlayerDetailId id;
+	@Id
+	private int id;
+	
+	private int gameId;
+	
+	private String gameName;
+
+	public String getGameName() {
+		return gameName;
+	}
+
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
 
 	private String name;
 
 	private String score;
+	
 
-	public PlayerDetailId getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(PlayerDetailId id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
+	public int getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(int gameId) {
+		this.gameId = gameId;
+	}
+	
 	public String getName() {
 		return name;
 	}
