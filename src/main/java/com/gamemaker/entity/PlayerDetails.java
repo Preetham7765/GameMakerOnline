@@ -18,6 +18,12 @@ public class PlayerDetails {
 		return gameName;
 	}
 
+	@Override
+	public String toString() {
+		return "PlayerDetails [id=" + id + ", gameId=" + gameId + ", gameName=" + gameName + ", name=" + name
+				+ ", score=" + score + "]";
+	}
+
 	public void setGameName(String gameName) {
 		this.gameName = gameName;
 	}
