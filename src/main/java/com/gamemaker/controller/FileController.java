@@ -40,7 +40,7 @@ public class FileController {
 
         try {
 
-            // Get the file and save it somewhere
+            // Get the file and save it in static resource folder
             byte[] bytes = file.getBytes();
             String path = this.getClass().getResource("/static").getPath() + "/" +file.getOriginalFilename(); 
 

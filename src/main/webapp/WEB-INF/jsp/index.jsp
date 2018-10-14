@@ -9,8 +9,44 @@
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  		<style>
+  		html, body {
+  			height: 100%;
+		}
+
+		.wrapper {
+  			display: flex;
+  			flex-direction: column;
+ 			width :100%
+  			height: 100%;
+		}
+  		.jumbotron {
+			background-image: url("images/image1.jpg");
+			color: #fff13b;
+			background-size: cover;
+		}
+		header{
+			position: fixed;
+			height: 2%;
+		}	
+  		#outer{
+  			position:fixed;
+  			background-image: url("images/background.jpg");
+			background-size: cover;
+			width: 100%;
+			height : 90%;
+  			background-repeat: no-repeat;
+  			flex-grow: 1;
+  		}
+  		</style>
 	</head>
 	<body>
+		<div class="wrapper">
+		<header class="jumbotron text-center" style="margin-bottom:0">
+			<h1>Game Maker</h1>
+  			<p>Team 2</p> 
+		</header>	
+		<div id= "outer">
 		<p>Get your Game Maker <a href="${gameMaker}">here</a></p>
 		<div>
 			<table class="table table-hover table-dark">
@@ -58,5 +94,8 @@
          <br />
 		<input type="submit" value = "Download"/>
       </form>
+		
+		</div>
+		</div>
 	</body>
-<hmtl>
+<html>
