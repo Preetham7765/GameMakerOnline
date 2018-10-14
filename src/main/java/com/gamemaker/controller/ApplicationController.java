@@ -33,10 +33,6 @@ public class ApplicationController {
 	@RequestMapping(value = "saveScore", method = RequestMethod.POST)
 	public ResponseEntity<String> savePlayerScore(@RequestBody ScoreBoardEntry newScoreEntry) {
 		
-		System.out.println(newScoreEntry.getGame());
-		System.out.println(newScoreEntry.getUserName());
-		System.out.println(newScoreEntry.getScore());
-		
 		return new ResponseEntity<>("OK", HttpStatus.CREATED);
 	} 
 

@@ -1,14 +1,17 @@
 package com.gamemaker.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,15 +56,12 @@ public class FileController {
     }
     
     @GetMapping("/download")
-    public ResponseEntity<ByteArrayResource> downloadFile2(@RequestParam("filename") String fileName) throws IOException {
- 
-        Path path = Paths.get(UPLOADED_FOLDER + fileName);
-        byte[] data = Files.readAllBytes(path);
-        ByteArrayResource resource = new ByteArrayResource(data);
- 
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + path.getFileName().toString())
-                .contentLength(data.length) //
-                .body(resource);
+    public void downloadFile(@RequestParam("filename") String fileName,
+    						 HttpServletResponse response) throws IOException {
+    	
+    	File file = new ClassPathResource("static/" + fileName + ".ser").getFile();
+    	InputStream in = new FileInputStream(file);
+    	IOUtils.copy(in, response.getOutputStream());
+    	response.flushBuffer();
     }
 }
