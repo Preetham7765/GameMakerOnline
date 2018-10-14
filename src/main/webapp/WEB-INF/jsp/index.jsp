@@ -25,7 +25,7 @@
 		  		<c:forEach items = "${PlayerScores}" var = "entry" varStatus = "Status"> 
 			    	<tr>
 			      		<td>${entry.userName}</td>
-			      		<td>${entry.game}</td>
+			      		<td>${entry.gameName}</td>
 			      		<td>${entry.score}</td>
 			    	</tr>
 		    	</c:forEach>    
@@ -53,10 +53,11 @@
       </form>
       
      <h3>File Download:</h3>
-      <form action = "/file/download" method = "get" enctype = "multipart/form-data">
-         <input type="text" name="filename" />
-         <br />
-		<input type="submit" value = "Download"/>
-      </form>
+     	<form action = "/file/download" method = "get">
+     		<c:forEach items = "${downloadFiles}" var = "file" varStatus = "Status">
+     			<input TYPE=radio name=fileName VALUE=${file}> ${file} <BR>
+			</c:forEach>
+			<input type = "submit" value = "Download" />
+		</form>    
 	</body>
 <hmtl>

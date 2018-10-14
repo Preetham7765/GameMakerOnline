@@ -1,5 +1,6 @@
 package com.gamemaker.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -27,6 +28,7 @@ public class ScoreBoardService {
 	private static final String PATH = "static/";
 
 	public int saveScore(@NonNull ScoreBoardEntry entry) {
+		System.out.println("Game Name: " + entry.getGameName());
 		GameDetails gameDetails = gameRepository.findByName(entry.getGameName());
 
 		if (gameDetails == null) {
@@ -61,19 +63,34 @@ public class ScoreBoardService {
 
 	}
 
-	public int saveGame(String gameName) {
-
+	public int saveGame(String fileName) {
+		
+		String gameName = fileName.split("\\.")[0];
+		System.out.println("gameName" + gameName);
 		GameDetails game = gameRepository.findByName(gameName);
 		if (game != null)
 			return -1;
 
 		GameDetails gameDetail = new GameDetails();
 		gameDetail.setName(gameName);
-		gameDetail.setPath(PATH + gameName);
-
+		gameDetail.setPath(PATH + fileName);
+		
 		gameRepository.save(gameDetail);
 
 		return gameDetail.getId();
 	}
+	
+	public List<String> listFiles() {
+		String path = this.getClass().getResource("/static").getPath();
+		File[] files = new File(path).listFiles();
+		List<String> filenames = new ArrayList<>();
+		for(File f: files) {
+			String name = f.getName();
+			if (name.contains(".ser")) {
+				filenames.add(name.substring(0, name.lastIndexOf('.')));
+			}
+		}
+		return filenames;
+	} 
 
 }

@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -63,10 +64,11 @@ public class FileController {
     }
     
     @GetMapping("/download")
-    public void downloadFile(@RequestParam("filename") String fileName,
+    public void downloadFile(HttpServletRequest request,
     						 HttpServletResponse response) throws IOException {
-    	
+    	String fileName = request.getParameter("fileName");
     	File file = new ClassPathResource("static/" + fileName + ".ser").getFile();
+    	response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + ".ser\"");
     	InputStream in = new FileInputStream(file);
     	IOUtils.copy(in, response.getOutputStream());
     	response.flushBuffer();
