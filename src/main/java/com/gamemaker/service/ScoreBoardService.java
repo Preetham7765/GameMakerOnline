@@ -20,25 +20,59 @@ public class ScoreBoardService {
 
 	@Autowired
 	private GameRepository gameRepository;
-	
+
 	@Autowired
 	private PlayerRepository playerRepository;
+
+	private static final String PATH = "static/";
 	
-	public void saveScore(@NonNull int gameId, @NonNull String name, @NonNull int Score) {
-		GameDetails gameDetails = gameRepository.findById(gameId).get();
+	public int saveScore(@NonNull ScoreBoardEntry entry) {
+		GameDetails gameDetails = gameRepository.findByName(entry.getGameName());
+		
 		if (gameDetails == null) {
-			//TO DO: throw error
+			
+			return -1;
 		}
+		
+		PlayerDetails playerDetails = new PlayerDetails();
+		playerDetails.setName(entry.getUserName());
+		playerDetails.setGameId(gameDetails);
+		playerDetails.setScore(entry.getScore());
+		
+		playerRepository.save(playerDetails);
+		
+		return playerDetails.getId();
 	}
-	
+
 	public List<ScoreBoardEntry> getTopScores() {
 		Iterable<PlayerDetails> playerDetails = playerRepository.findAll();
 		List<PlayerDetails> p = new ArrayList<>();
-		Iterator itr = playerDetails.iterator();
-		while(itr.hasNext()) {
-			p.add((PlayerDetails)itr.next());
+		Iterator<PlayerDetails> itr = playerDetails.iterator();
+		while (itr.hasNext()) {
+			p.add((PlayerDetails) itr.next());
 		}
-		return p.stream().map(s->ScoreBoardMapper.toScoreBoardEntry(s)).collect(Collectors.toList());
+		return p.stream().map(s -> this.toScoreBoardEntry(s)).collect(Collectors.toList());
+	}
+	
+	private ScoreBoardEntry toScoreBoardEntry(@NonNull PlayerDetails playerDetails) {
+
+		String gameName = gameRepository.findNameById(playerDetails.getGameId().getId());
+		return new ScoreBoardEntry(gameName, playerDetails.getName(), playerDetails.getScore());
+		
+	}
+
+	public int saveGame(String gameName) {
+		
+		GameDetails game = gameRepository.findByName(gameName);
+		if(game != null) return -1;
+		
+		GameDetails gameDetail = new GameDetails();
+		gameDetail.setName(gameName);
+		gameDetail.setPath(PATH + gameName +".ser");
+		
+		gameRepository.save(gameDetail);
+		
+		return gameDetail.getId();
 	}
 
 }

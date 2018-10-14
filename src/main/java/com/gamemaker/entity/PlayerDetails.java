@@ -1,37 +1,27 @@
 package com.gamemaker.entity;
 
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PlayerDetails {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private int gameId;
-	
-	private String gameName;
-
-	public String getGameName() {
-		return gameName;
-	}
-
-	@Override
-	public String toString() {
-		return "PlayerDetails [id=" + id + ", gameId=" + gameId + ", gameName=" + gameName + ", name=" + name
-				+ ", score=" + score + "]";
-	}
-
-	public void setGameName(String gameName) {
-		this.gameName = gameName;
-	}
-
 	private String name;
 
 	private String score;
 	
+	@ManyToOne
+	@JoinColumn(name = "game_id")
+	private GameDetails gameId; 
+
 
 	public int getId() {
 		return id;
@@ -41,11 +31,11 @@ public class PlayerDetails {
 		this.id = id;
 	}
 
-	public int getGameId() {
+	public GameDetails getGameId() {
 		return gameId;
 	}
 
-	public void setGameId(int gameId) {
+	public void setGameId(GameDetails gameId) {
 		this.gameId = gameId;
 	}
 	

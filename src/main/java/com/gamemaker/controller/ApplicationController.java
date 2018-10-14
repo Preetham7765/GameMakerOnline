@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gamemaker.model.ScoreBoardEntry;
 import com.gamemaker.service.ScoreBoardService;
@@ -31,9 +32,21 @@ public class ApplicationController {
 	}
 	
 	@RequestMapping(value = "saveScore", method = RequestMethod.POST)
-	public ResponseEntity<String> savePlayerScore(@RequestBody ScoreBoardEntry newScoreEntry) {
+	public ResponseEntity<Integer> savePlayerScore(@RequestBody ScoreBoardEntry newScoreEntry) {
+
+		int id =  scoreBoardService_.saveScore(newScoreEntry);
 		
-		return new ResponseEntity<>("OK", HttpStatus.CREATED);
-	} 
+		return new ResponseEntity<>(id, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "saveGame", method = RequestMethod.POST)
+	public ResponseEntity<Integer> saveGame(@RequestParam(value="gameName", required = true) String gameName) {
+
+		int id =  scoreBoardService_.saveGame(gameName);
+		
+		return new ResponseEntity<>(id, HttpStatus.CREATED);
+	}
+	
+	
 
 }
