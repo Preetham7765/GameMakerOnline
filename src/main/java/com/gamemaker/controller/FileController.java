@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gamemaker.service.ScoreBoardService;
+
 @Controller
 @RequestMapping("/file")
 public class FileController {
-
-	private static String UPLOADED_FOLDER = "/Users/ankita/";
-	//private static String UPLOADED_FOLDER = "../../src/main/resources/static";
+	
+	@Autowired
+	private ScoreBoardService scoreBoardService_;
 
     @PostMapping("/upload")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
@@ -39,9 +42,13 @@ public class FileController {
 
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-            Files.write(path, bytes);
+            String path = this.getClass().getResource("/static").getPath() + "/" +file.getOriginalFilename(); 
 
+            Files.write(Paths.get(path), bytes);
+            
+            //save the game name in the DB
+            scoreBoardService_.saveGame(file.getOriginalFilename());
+            
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
 

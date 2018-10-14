@@ -25,22 +25,22 @@ public class ScoreBoardService {
 	private PlayerRepository playerRepository;
 
 	private static final String PATH = "static/";
-	
+
 	public int saveScore(@NonNull ScoreBoardEntry entry) {
 		GameDetails gameDetails = gameRepository.findByName(entry.getGameName());
-		
+
 		if (gameDetails == null) {
-			
+
 			return -1;
 		}
-		
+
 		PlayerDetails playerDetails = new PlayerDetails();
 		playerDetails.setName(entry.getUserName());
 		playerDetails.setGameId(gameDetails);
 		playerDetails.setScore(entry.getScore());
-		
+
 		playerRepository.save(playerDetails);
-		
+
 		return playerDetails.getId();
 	}
 
@@ -53,25 +53,26 @@ public class ScoreBoardService {
 		}
 		return p.stream().map(s -> this.toScoreBoardEntry(s)).collect(Collectors.toList());
 	}
-	
+
 	private ScoreBoardEntry toScoreBoardEntry(@NonNull PlayerDetails playerDetails) {
 
 		String gameName = gameRepository.findNameById(playerDetails.getGameId().getId());
 		return new ScoreBoardEntry(gameName, playerDetails.getName(), playerDetails.getScore());
-		
+
 	}
 
 	public int saveGame(String gameName) {
-		
+
 		GameDetails game = gameRepository.findByName(gameName);
-		if(game != null) return -1;
-		
+		if (game != null)
+			return -1;
+
 		GameDetails gameDetail = new GameDetails();
 		gameDetail.setName(gameName);
-		gameDetail.setPath(PATH + gameName +".ser");
-		
+		gameDetail.setPath(PATH + gameName);
+
 		gameRepository.save(gameDetail);
-		
+
 		return gameDetail.getId();
 	}
 
