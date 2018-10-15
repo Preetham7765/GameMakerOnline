@@ -67,7 +67,8 @@ public class FileController {
     public void downloadFile(HttpServletRequest request,
     						 HttpServletResponse response) throws IOException {
     	String fileName = request.getParameter("fileName");
-    	File file = new ClassPathResource("static/" + fileName + ".ser").getFile();
+    	String path = scoreBoardService_.getPath(fileName);
+    	File file = new ClassPathResource(path).getFile();
     	response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + ".ser\"");
     	InputStream in = new FileInputStream(file);
     	IOUtils.copy(in, response.getOutputStream());

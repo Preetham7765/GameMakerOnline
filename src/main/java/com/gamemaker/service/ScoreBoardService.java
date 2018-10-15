@@ -91,6 +91,13 @@ public class ScoreBoardService {
 			}
 		}
 		return filenames;
+	}
+
+	public String getPath(String fileName) {
+		GameDetails game = gameRepository.findByName(fileName);
+		if(game == null) return null;
+		
+		return game.getPath();
 	} 
 
 }
