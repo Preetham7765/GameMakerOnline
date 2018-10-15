@@ -1,9 +1,21 @@
 /target/
+
+/src/main/resources/application.properties
+
+bin/
+log/
+
+*.log
+*.class
+
+
+# Eclipse
 .classpath
-.gitignore
 .project
 .settings/
-/src/main/resources/application.properties
+  
+# Mac
+.DS_Store
 
 !.mvn/wrapper/maven-wrapper.jar
 
