@@ -12,13 +12,16 @@
   		
   		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
   		<style>
+  		*{
+  			box-sizing : border-box;
+  		}
   		html, body {
   			height: 100%;
 		}
 
 		.wrapper {
  			width :100%;
-  			height: 100vh;
+  			height: 170vh;
 		}
 		
 		h5 {
@@ -43,7 +46,35 @@
   		.card-text{
   			font-weight : bold;
   		}
-  		</style>
+		
+		ul.items
+		{
+		  text-align: center; 
+		  list-style-type: none;  
+		  width: 400px;
+		}
+		
+		.display-inline
+		{
+		    display: inline;
+		    padding: 10px 40px;     
+		}
+		
+		.button {
+		  background-color: Crimson;  
+		  border-radius: 5px;
+		  color: white;
+		  padding: .5em;
+		  text-decoration: none;
+		}
+		
+		.button:focus,
+		.button:hover {
+		  background-color: FireBrick;
+		  color: White;
+		}
+  		
+  	</style>
 	</head>
 	<body>
 		<div class="wrapper">
@@ -60,7 +91,7 @@
 						Upload your score and compete with the world:
 						<ul style = "list-style-type:none">
 						<li> Make your game </li>
-						<li> Save and upload your gamne to our servers </li>
+						<li> Save and upload your game to our servers </li>
 						<li> OR</li>
 						<li> Download and load a game</li>
 						<li> Play your game </li>
@@ -70,7 +101,8 @@
 									
 						
 						</p>
-						<button type="button" class="btn btn-secondary btn-lg"><a href="${gameMaker}" style = "color: #ffffff">Play</a> </button>
+						<!--<button type="button" class="btn btn-secondary btn-lg"><a href="${gameMaker}" style = "color: #ffffff">Play</a> </button>-->
+						<a href="${gameMaker}" style = "color: #664d00">Play</a> 
 					</div>
 				</div>
 				<div class="mt-3 ml-3"">
@@ -80,18 +112,29 @@
 						<input type = "file" name = "file" size = "50" style ="color:#664d00;"/>
 						<input type = "submit" value = "Upload File" />
 					</form>
-					</div>
-				<div class="mt-3 ml-3"" style="width:25%">
+				</div>
+				<div class="mt-3 ml-3">
 					<h5>File Download:</h5>
+					<div class = "mt-5 mb-5">
+						<ul class="items">
+							<c:forEach items = "${downloadFiles}" var = "file" varStatus = "Status">
+								<li class = "display-inline">
+									<a href="/file/download?fileName=${file}" class="button js-button" role="button">${file}</a>
+								</li>
+							</c:forEach>
+						</ul>
+					</div>
+					<!--
 					<div class="list-group">
 						<c:forEach items = "${downloadFiles}" var = "file" varStatus = "Status">
 							<a href="/file/download?fileName=${file}" class="list-group-item list-group-item-action">${file}</a>
 						</c:forEach>
 					</div>
+					-->
 				</div>
-				<div class="mt-3 ml-3"">
+				<div class="mt-3 ml-3">
 					<h5 >Scoreboard</h5>
-					<table class="table table-hover table-dark" style = "width : 25%;">
+					<table class="table table-hover table-dark mt-4" style = "width : 25%;">
 		  				<thead>
 		    				<tr>
 		      					<th scope="col">Player Name</th>
