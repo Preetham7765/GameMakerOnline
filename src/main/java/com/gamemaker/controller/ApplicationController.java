@@ -23,13 +23,11 @@ public class ApplicationController {
 
 	@RequestMapping("/")
 	public String show(Model model) {
-		System.out.println(scoreBoardService_.listFiles());
 		model.addAttribute("downloadFiles", scoreBoardService_.listFiles());
 		List<ScoreBoardEntry> scoreBoardEntries = scoreBoardService_.getTopScores();
 		model.addAttribute("gameMaker", "App.jnlp");
 		model.addAttribute("PlayerScores", scoreBoardEntries);
 		return "index";
-
 	}
 	
 	@RequestMapping(value = "saveScore", method = RequestMethod.POST)

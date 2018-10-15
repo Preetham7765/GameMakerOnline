@@ -47,7 +47,7 @@ public class ScoreBoardService {
 	}
 
 	public List<ScoreBoardEntry> getTopScores() {
-		Iterable<PlayerDetails> playerDetails = playerRepository.findAll();
+		Iterable<PlayerDetails> playerDetails = playerRepository.getTopFiveScore();
 		List<PlayerDetails> p = new ArrayList<>();
 		Iterator<PlayerDetails> itr = playerDetails.iterator();
 		while (itr.hasNext()) {

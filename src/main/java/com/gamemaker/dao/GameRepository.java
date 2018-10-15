@@ -15,4 +15,5 @@ public interface GameRepository extends CrudRepository<GameDetails, Integer>{
 
 	public GameDetails findByName(String game);
 
+
 }
